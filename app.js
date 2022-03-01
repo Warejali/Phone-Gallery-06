@@ -1,6 +1,7 @@
 const loadData = () => {
     const userInput = document.getElementById('search-kayword')
     const userText = userInput.value;
+    document.getElementById('error-message').style.display = 'none';
     userInput.value = ""
     const url = `https://openapi.programming-hero.com/api/phones?search=${userText}`;
     fetch(url)
@@ -11,19 +12,27 @@ const loadData = () => {
 /* Display all search result */
 const displayData = data => {
     const items = document.getElementById('items')
+    const firsData = data.slice(0, 20)
     items.innerHTML = "";
+    if (data.length == 0) {
+        document.getElementById('error-message').style.display = 'block';
+    }
     const fullItem = document.getElementById('details');
     fullItem.innerHTML = "";
-    data.forEach(phone => {
+    firsData.forEach(phone => {
         const div = document.createElement('div');
         div.classList.add('col')
         div.innerHTML = `
-      <div class="card h-100">
-         <img src="${phone.image}" class="card-img-top" alt="...">
-            <div class="card-body">
-               <h5 class="card-title">${phone.phone_name}</h5>
-               <h6 class="card-title">${phone.brand}</h6>
-               <button onclick="loadDetials('${phone.slug}')" id="details-btn" class="btn btn-secondary">Details</button>   
+      <div class="card h-100 p-2">
+         <img src="${phone.image}" class="card-img-top p-3" alt="...">
+            <div class="card-body d-flex justify-content-between">
+               <div>
+                    <h5 class="card-title">${phone.phone_name}</h5>
+                    <p class="card-title">Brand: ${phone.brand}</p>
+               </div>
+               <div>
+                    <button onclick="loadDetials('${phone.slug}')" id="details-btn" class="btn btn-secondary mt-3">Details</button> 
+                </div>
             </div>
       </div>
       `
@@ -36,26 +45,31 @@ const loadDetials = slug =>{
     fetch(url)
     .then(res => res.json())
     .then(data => displayDetails(data.data))
+    .catch(error => errorMessage(error))
+}
+
+const errorMessage = error =>{
+    document.getElementById('error-message2').style.display = 'block';
 }
 
 /* Display phone details */
 const displayDetails = phone =>{
     const fullItem = document.getElementById('details');
+    document.getElementById('error-message2').style.display = 'none';
     fullItem.innerHTML = "";
     const div = document.createElement('div');
     div.classList.add('card');
     div.innerHTML = `
     
     <div class="row g-3 p-3">
-        <div class="col-md-4 align-item-center justify-content-center">
+        <div class="col-md-4 align-items-center d-flex justify-content-center">
             <img src="${phone.image}" class="w-100" alt="">
         </div>
         <div class="col-md-8">
             <div class="card-body">
                 <h2 class="card-title">${phone.name}</h2>
-                <h6 class="card-title">${phone.releaseDate || 'Unknown Release Date'}</h6>
+                <h6 class="card-title">${phone.releaseDate || '<spin class="text-warning"> Unknown Release Date</spin>'}</h6>
                 <p class="card-text"><small class="text-muted"></small></p>
-
                 <h5>Main Features:</h5>
                 <table class="table table-bordered text-center">
                     <thead>
