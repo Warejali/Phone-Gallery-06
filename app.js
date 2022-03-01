@@ -75,18 +75,18 @@ const displayDetails = phone =>{
                 <table class="table table-bordered text-center">
                     <thead>
                         <tr>
-                            <th class ="table-primary">Storage:</th>
-                            <th class="table-danger">DisplaySize:</th>
-                            <th class="table-secondary">ChipSet:</th>
-                            <th class="table-warning">Memory</th>
+                            <th>Storage:</th>
+                            <th>DisplaySize:</th>
+                            <th>ChipSet:</th>
+                            <th>Memory</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="table-info">${phone.mainFeatures.storage} </td>
-                            <td class="table-warning">${phone.mainFeatures.displaySize} </td>
-                            <td class="table-success">${phone.mainFeatures.chipSet} </td>
-                            <td class="table-danger">${phone.mainFeatures.memory} </td>
+                            <td>${phone.mainFeatures.storage} </td>
+                            <td>${phone.mainFeatures.displaySize} </td>
+                            <td>${phone.mainFeatures.chipSet} </td>
+                            <td>${phone.mainFeatures.memory} </td>
                         </tr>
                     </tbody>
                 </table>    
@@ -94,7 +94,7 @@ const displayDetails = phone =>{
             <table class="table table-bordered text-center">
                 <thead>
                     <h5>Sensors:</h5>
-                    <tr class="table-info">
+                    <tr>
                         <td>${phone.mainFeatures.sensors[0]}:</td>
                         <td>${phone.mainFeatures.sensors[1]}</td>
                         <td>${phone.mainFeatures.sensors[2]}</td>
@@ -104,27 +104,26 @@ const displayDetails = phone =>{
                     </tr>
                 </thead>
             </table>  
-
     <h5>Others:</h5>
     <table class="table table-bordered text-center">
         <thead>
             <tr>
-                <th class="table-danger">WLAN:</th>
-                <th class="table-success">Bluetooth:</th>
-                <th class="table-warning">GPS:</th>
-                <th class="table-info">NFC</th>
-                <th class="table-danger">Radio</th>
-                <th class="table-info">USB</th>
+                <th>WLAN:</th>
+                <th>Bluetooth:</th>
+                <th>GPS:</th>
+                <th>NFC</th>
+                <th>Radio</th>
+                <th>USB</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td class="table-secondary">${phone.others.WLAN} </td>
-                <td class="table-danger">${phone.others.Bluetooth} </td>
-                <td class="table-info">${phone.others.GPS}</td>
-                <td class="table-warning">${phone.others.NFC}</td>
-                <td class="table-primary">${phone.others.Radio}</td>
-                <td class="table-secondary">${phone.others.USB}</td>
+                <td>${phone.others.WLAN} </td>
+                <td>${phone.others.Bluetooth} </td>
+                <td>${phone.others.GPS}</td>
+                <td>${phone.others.NFC}</td>
+                <td>${phone.others.Radio}</td>
+                <td>${phone.others.USB}</td>
             </tr>
         </tbody>
     </table>
