@@ -2,6 +2,7 @@ const loadData = () => {
     const userInput = document.getElementById('search-kayword')
     const userText = userInput.value;
     document.getElementById('error-message').style.display = 'none';
+    document.getElementById('error-message2').style.display = 'none';
     userInput.value = ""
     const url = `https://openapi.programming-hero.com/api/phones?search=${userText}`;
     fetch(url)
